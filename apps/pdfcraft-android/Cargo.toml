@@ -1,0 +1,24 @@
+[package]
+name = "pdfcraft-android"
+description = "PdfCraft for Android: the egui app as a NativeActivity library (build with `cargo ndk`, package with Gradle; see android/ and .github/workflows/android.yml)"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+# Deliberately no `[lints] workspace = true`: the workspace forbids `unsafe`, and the Android
+# entry point (`#[unsafe(no_mangle)] android_main`) is the one place that needs it.
+
+[lib]
+name = "pdfcraft_android"
+crate-type = ["cdylib"]
+
+[target.'cfg(target_os = "android")'.dependencies]
+pdfcraft-ui-egui = { workspace = true }
+pdfcraft-rfd = { path = "../../crates/rfd-shim" }
+# GLES through glow: the safest choice on small phones. wgpu stays compiled in through ui-egui.
+eframe = { workspace = true, features = ["default_fonts", "glow", "android-native-activity", "persistence"] }
+egui = { workspace = true }
+winit = { version = "0.30", default-features = false, features = ["android-native-activity"] }
+log = { workspace = true }
+android_logger = "0.14"

@@ -1,0 +1,13 @@
+[package]
+name = "pdfcraft-arboard"
+description = "arboard on desktop; on Android a stand-in whose clipboard calls report that they are unsupported"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[lints]
+workspace = true
+
+[target.'cfg(not(target_os = "android"))'.dependencies]
+arboard = { version = "3.6", default-features = false, features = ["image-data"] }

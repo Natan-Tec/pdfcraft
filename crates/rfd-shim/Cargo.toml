@@ -1,0 +1,17 @@
+[package]
+name = "pdfcraft-rfd"
+description = "rfd everywhere it exists; on Android, file pickers answered by the Kotlin shell through a mailbox folder"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[lints]
+workspace = true
+
+[features]
+# Forwarded to rfd (the web build needs it).
+file-handle-inner = ["rfd/file-handle-inner"]
+
+[target.'cfg(not(target_os = "android"))'.dependencies]
+rfd = { workspace = true }
