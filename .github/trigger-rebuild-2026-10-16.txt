@@ -1,0 +1,5 @@
+Trigger rebuild requested by user to re-run CI.
+
+This file was created to trigger GitHub Actions after the recent fix removing `accesskit` from eframe features.
+
+Timestamp: 2026-10-16T20:03:53Z
